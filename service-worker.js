@@ -1,5 +1,5 @@
-const CACHE='routine-timer-v25';
-const ASSETS=['./','./index.html','./manifest.json','./icons/icon-192.png','./icons/icon-512.png','./Plantilla_Routine_Timer.xlsx'];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const copy=res.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return res}).catch(()=>caches.match('./index.html'))))});
+const CACHE='routine-timer-v26';
+const ASSETS=['./','./index.html','./features.js','./features-core.js','./features.css','./manifest.json','./icons/icon-192.png','./icons/icon-512.png','./Plantilla_Routine_Timer.xlsx','https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2','https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js'];
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
+self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('routine-timer-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',event=>{const req=event.request,url=new URL(req.url);if(req.method!=='GET')return;const appAsset=url.origin===self.location.origin;const dependency=url.origin==='https://cdn.jsdelivr.net'&&ASSETS.includes(req.url);if(!appAsset&&!dependency)return;event.respondWith(caches.open(CACHE).then(async cache=>{const hit=await cache.match(req,{ignoreSearch:appAsset});if(hit)return hit;try{const response=await fetch(req);if(response.ok&&(appAsset||dependency))await cache.put(req,response.clone());return response}catch(error){if(req.mode==='navigate')return await cache.match('./index.html');throw error}}))});
