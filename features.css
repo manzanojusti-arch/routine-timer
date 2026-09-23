@@ -6,6 +6,7 @@
 /* Navigation and compact planning */
 #tabCreate,#tabachievements{display:none!important}
 #homeSection>.themeCard{margin-top:16px;max-width:540px}
+#themeGrid button.themeBtn,[data-mode=light] #themeGrid button.themeBtn{background:transparent;box-shadow:none;text-shadow:none;border:0}
 #rtMineHeading{margin:26px 0 10px;font-size:18px}
 #routineEditor{margin-top:18px;max-width:930px}
 #routineEditor.hidden{display:none!important}
