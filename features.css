@@ -2,3 +2,38 @@
 #rtWorkExtras input[type=number]{max-width:180px}#rtWorkExtras{margin:12px 0}#rtRestExtras{justify-content:center;margin:10px 0}.fullscreenMode #rtRestExtras,.fullscreenMode #rtWorkExtras{flex-shrink:0}.rt-dialog input[type=checkbox]{width:auto}.rt-dialog :focus-visible{outline:2px solid var(--accent);outline-offset:3px}#homeSection .card{min-height:220px}#rtCatalogTabs button{flex:1}.routineCard>button:first-child{text-align:left;background:transparent;border:0;padding-left:0;font-size:18px}.rt-offline:empty{display:none}
 
 #signupDetails{margin-top:20px}#signupDetails>label,#signupDetails .grid2{margin-bottom:14px}#createSection>#accountCard.rt-signup{grid-column:1/-1;max-width:700px;width:100%;box-sizing:border-box}#signupDetails button[type=submit]{width:100%}
+
+/* Navigation and compact planning */
+#tabCreate,#tabachievements{display:none!important}
+#homeSection>.themeCard{margin-top:16px;max-width:540px}
+#rtMineHeading{margin:26px 0 10px;font-size:18px}
+#routineEditor{margin-top:18px;max-width:930px}
+#routineEditor.hidden{display:none!important}
+#routineEditor>.card,#routineEditor #wizard3>.card{margin-bottom:12px}
+#rtCalendarGrid .rt-day{cursor:pointer;min-height:92px}
+#rtCalendarGrid .rt-event{cursor:pointer}
+.rt-calendar-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.rt-calendar-header h2{margin:0}
+#rtWeekLabel{font-size:13px;white-space:nowrap;font-weight:600}
+.rt-calendar-header .rt-row{gap:8px}
+#accountChip.rt-account{display:grid;place-items:center;width:38px;height:38px;min-height:38px;padding:0;line-height:1;border-radius:9px}
+#accountChip svg{display:block}
+#rtProfileAchievements{margin:18px 0;cursor:pointer}
+#rtProfileAchievementsContent{padding-top:12px;cursor:auto}
+#rtProfileAchievementsContent>.card{padding:0;border:0;background:transparent;box-shadow:none}
+#rtProfileAchievementsContent .rt-grid{grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
+.rt-pending{text-align:center;max-width:600px;margin:25px auto!important}
+.rt-watch-card{max-width:900px;margin:auto!important}
+.rt-watch-card .rt-clock{margin:22px 0}
+.rt-watch-controls{max-width:680px;margin:0 auto}
+.rt-watch-controls button{min-width:0}
+.rt-watch-finish,.rt-watch-reset{display:block;width:min(680px,100%);margin:10px auto 0!important}
+.rt-watch-card>p{max-width:680px;margin:15px auto}
+#rtWatchLaps,#rtWatchHistory{max-width:680px;margin:0 auto}
+.rt-watch-fullscreen{position:fixed!important;inset:0;z-index:30;display:flex!important;flex-direction:column;align-items:stretch;overflow-y:auto;background:var(--bg);padding:env(safe-area-inset-top) 15px env(safe-area-inset-bottom);box-sizing:border-box}
+.rt-watch-fullscreen .rt-watch-card{border:0;box-shadow:none;max-width:100%;width:100%;min-height:100%;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
+.rt-watch-fullscreen .rt-watch-card .rt-clock{font-size:clamp(40px,11vw,130px);padding:12px 0;margin:auto 0 16px;white-space:nowrap}
+.rt-watch-fullscreen .rt-watch-controls{width:100%}
+.rt-watch-fullscreen #rtWatchLaps{max-height:22dvh;overflow:auto;width:100%}
+.rt-watch-fullscreen .rt-watch-card>h3,.rt-watch-fullscreen #rtWatchHistory{display:none}
+@media(max-width:700px){.rt-calendar-header .rt-row{width:100%;justify-content:space-between}.rt-calendar{grid-template-columns:repeat(2,minmax(0,1fr))}.rt-watch-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.rt-watch-controls button{font-size:13px;padding:10px 5px}.rt-watch-fullscreen .rt-watch-card .rt-clock{font-size:clamp(37px,10vw,75px)}#rtMineHeading{margin-top:22px}}
