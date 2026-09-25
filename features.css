@@ -40,4 +40,11 @@
 .rt-watch-fullscreen .rt-watch-controls{width:100%}
 .rt-watch-fullscreen #rtWatchLaps{max-height:22dvh;overflow:auto;width:100%}
 .rt-watch-fullscreen .rt-watch-card>h3,.rt-watch-fullscreen #rtWatchHistory{display:none}
+#customOrderBtn{grid-column:1/-1;align-self:flex-start;min-height:38px;padding:7px 11px;margin:0 0 10px;font-size:13px}
+#customOrderOverlay{z-index:80}
+#customOrderOverlay .infoPanel{max-height:86dvh;overflow:auto}
+#customOrderList{max-height:52dvh;overflow:auto}
+#customOrderList .rt-custom-choice{width:100%;min-height:54px;text-align:left;padding:10px 13px}
+#customOrderList .rt-custom-choice small{display:block;margin-top:3px;color:var(--muted);font-weight:400}
+#customOrderClose{width:100%;min-height:40px;margin-top:8px}
 @media(max-width:700px){.rt-calendar-header .rt-row{width:100%;justify-content:space-between}.rt-calendar{grid-template-columns:repeat(2,minmax(0,1fr))}.rt-watch-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.rt-watch-controls button{font-size:13px;padding:10px 5px}.rt-watch-fullscreen .rt-watch-card .rt-clock{font-size:clamp(37px,10vw,75px)}#rtMineHeading{margin-top:22px}}

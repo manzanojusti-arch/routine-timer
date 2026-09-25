@@ -88,7 +88,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const SUPABASE_URL='https://arqpwnsjlqchbklxcosg.supabase.co',SUPABASE_KEY='sb_publishable_h9dpnrNY5fyy3z4ZHRoQHQ_vncZLy_n';
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 let currentUser=null,editingRoutineId=null,editingExerciseIndex=null,savedRoutines=[],physicalRecords=[],workoutHistory=[],pendingImport=null,routineDays=[{name:'Día 1',exercises:[]}],currentDayIndex=0,trainingDayName='',exercises=[],plan=[],setLogs={},idx=-1,remaining=0,total=0,timer=null,running=false,preparing=false,wakeLock=null,resumeAfterVisibility=false,workoutStartedAt=null,workoutRecorded=false,audioContext=null,lastBeepSecond=null;
-const UPDATES_VERSION='routineUpdatesV27';let updatesOpened=false;
+const UPDATES_VERSION='routineUpdatesV28';let updatesOpened=false;
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,Math.round(Number(v)||a))),fmt=s=>String(Math.floor(Math.max(0,s)/60)).padStart(2,'0')+':'+String(Math.max(0,s)%60).padStart(2,'0');
 function message(el,text,bad=false){el.textContent=text;el.style.color=bad?'#fca5a5':'var(--muted)'}
 function showInfo(show){$('#infoOverlay').classList.toggle('hidden',!show);document.body.style.overflow=show?'hidden':'';if(show)$('#closeInfo').focus()}

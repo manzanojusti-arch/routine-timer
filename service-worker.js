@@ -1,4 +1,4 @@
-const CACHE='routine-timer-v29';
+const CACHE='routine-timer-v30';
 const ASSETS=['./','./index.html','./features.js','./features-core.js','./features.css','./manifest.json','./icons/icon-192.png','./icons/icon-512.png','./Plantilla_Routine_Timer.xlsx','https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2','https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('routine-timer-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
