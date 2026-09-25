@@ -80,3 +80,19 @@
 
 .rt-alternative-choices{display:grid;gap:6px;margin-bottom:12px}.rt-alternative-choices p{margin:0}.rt-alternative-choices button{text-align:left;min-height:37px}.rt-alternative-choices.hidden{display:none}
 #rtRememberReplacement{margin:12px 0}
+.rt-exercise-art{display:block;flex:none;width:72px;height:60px;color:var(--text)}
+.rt-exercise-art .motion{stroke:var(--metalMid);stroke-width:2.5}
+.rt-exercise-art .ground,.rt-exercise-art .equipment{opacity:.6}
+.rt-exercise-card>.rt-exercise-art{float:right;width:70px;height:60px;margin:-5px -5px 2px 8px}
+.rt-art-detail{display:grid;place-items:center;min-height:145px;border:1px solid var(--line);border-radius:8px;background:var(--card2);margin-bottom:14px}
+.rt-art-detail .rt-exercise-art{width:150px;height:125px}
+.rt-catalog-day li.rt-catalog-exercise-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.rt-catalog-exercise-row>div{min-width:0;flex:1}
+.rt-catalog-exercise-row>.rt-catalog-alt{width:100%;margin-left:81px}
+.rt-art-choice{display:flex;align-items:center;gap:8px}
+.rt-art-choice .rt-exercise-art{width:47px;height:40px}
+#list .exercise>.rt-exercise-art{width:56px;height:50px}
+#list .exercise>div:first-of-type{min-width:0;flex:1}
+.rt-art-current{display:grid;place-items:center;min-height:80px}
+.rt-art-current>.rt-exercise-art{width:102px;height:80px}
+#customOrderList .rt-exercise-art{float:right;width:52px;height:44px;margin-top:-29px}
