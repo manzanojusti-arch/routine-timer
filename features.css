@@ -47,4 +47,36 @@
 #customOrderList .rt-custom-choice{width:100%;min-height:54px;text-align:left;padding:10px 13px}
 #customOrderList .rt-custom-choice small{display:block;margin-top:3px;color:var(--muted);font-weight:400}
 #customOrderClose{width:100%;min-height:40px;margin-top:8px}
+.rt-catalog-tabs{margin:0 0 14px}
+.rt-catalog-tabs button{flex:1;min-height:39px;font-size:13px}
+.rt-catalog-search{display:grid;grid-template-columns:minmax(0,1fr) 145px 145px;gap:8px;align-items:end;margin:10px 0}
+.rt-catalog-search input,.rt-catalog-search select{min-height:42px;padding:8px 10px;margin-top:5px;font-size:14px}
+.rt-catalog-search>input{align-self:end;margin:0}
+.rt-catalog-search.rt-exercise-search{grid-template-columns:minmax(0,1fr) 180px}
+.rt-catalog-more{grid-template-columns:repeat(auto-fit,minmax(135px,1fr));margin:10px 0;gap:8px}
+#rtCatalogFilters{border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin:10px 0}
+#rtCatalogFilters summary{font-size:13px;cursor:pointer}
+.rt-catalog-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.rt-catalog-card{min-width:0;border:1px solid var(--line);border-radius:9px;padding:13px;background:var(--card2)}
+.rt-catalog-card h3{font-size:16px;margin:0 0 4px;font-weight:650}
+.rt-catalog-card p{margin:0 0 6px;min-height:34px}
+.rt-catalog-card>small{display:block;margin-bottom:9px}
+.rt-catalog-card .rt-row{gap:6px}
+.rt-catalog-card .rt-row button{min-height:36px;padding:7px 9px;font-size:12px}
+.rt-catalog-card .rt-row button:last-child{margin-left:auto}
+.rt-catalog-day{border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin:9px 0}
+.rt-catalog-day summary{cursor:pointer;font-weight:650;font-size:14px}
+.rt-catalog-day ul{list-style:none;padding:0;margin:10px 0 0}
+.rt-catalog-day li{padding:8px 0;border-top:1px solid var(--line)}
+.rt-catalog-day li small{display:block;margin:3px 0 0;color:var(--muted);font-size:12px}
+.rt-catalog-alt{font-size:12px;color:var(--muted);margin:4px 0}
+.rt-catalog-alt summary{font-size:12px;font-weight:500}
+.rt-catalog-alt span{display:block;margin:3px 0}
+.rt-catalog-picks{max-height:50dvh;overflow:auto;display:grid;gap:6px;margin-top:12px}
+.rt-catalog-picks button{text-align:left;min-height:38px}
+.rt-library-add{margin:7px 0 14px}
+@media(max-width:700px){.rt-catalog-search,.rt-catalog-search.rt-exercise-search{grid-template-columns:1fr 1fr}.rt-catalog-search>input{grid-column:1/-1}.rt-catalog-list{grid-template-columns:1fr}}
 @media(max-width:700px){.rt-calendar-header .rt-row{width:100%;justify-content:space-between}.rt-calendar{grid-template-columns:repeat(2,minmax(0,1fr))}.rt-watch-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.rt-watch-controls button{font-size:13px;padding:10px 5px}.rt-watch-fullscreen .rt-watch-card .rt-clock{font-size:clamp(37px,10vw,75px)}#rtMineHeading{margin-top:22px}}
+
+.rt-alternative-choices{display:grid;gap:6px;margin-bottom:12px}.rt-alternative-choices p{margin:0}.rt-alternative-choices button{text-align:left;min-height:37px}.rt-alternative-choices.hidden{display:none}
+#rtRememberReplacement{margin:12px 0}
