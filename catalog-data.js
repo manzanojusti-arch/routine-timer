@@ -2,7 +2,54 @@
 (function(root){
 const exerciseLibrary=[];
 const byId=new Map();
-const slug=name=>name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+// Conserva los identificadores de rutinas ya guardadas, pero muestra nombres concretos.
+const aliases={
+ 'Máquina inclinada':'Press de pecho inclinado en máquina',
+ 'Máquina abdominal':'Crunch abdominal en máquina',
+ 'Chest Press':'Press de pecho en máquina',
+ 'Shoulder Press':'Press de hombros en máquina',
+ 'Extensión máquina':'Extensión de tríceps en máquina',
+ 'Prensa':'Prensa de piernas',
+ 'Remo':'Remo con mancuerna',
+ 'Remo máquina':'Remo sentado en máquina',
+ 'Remo en máquina':'Remo sentado en máquina',
+ 'Remo sentado':'Remo sentado en polea',
+ 'Press en Smith':'Press de pecho en máquina Smith',
+ 'Press inclinado':'Press de pecho inclinado',
+ 'Press con mancuernas':'Press de pecho con mancuernas',
+ 'Curl máquina':'Curl de bíceps en máquina',
+ 'Curl polea':'Curl de bíceps en polea',
+ 'Curl mancuerna':'Curl de bíceps con mancuerna',
+ 'Extensión sobre cabeza':'Extensión de tríceps sobre la cabeza',
+ 'Extensión de tríceps sobre cabeza':'Extensión de tríceps sobre la cabeza',
+ 'Extensión tríceps':'Extensión de tríceps en polea alta',
+ 'Triceps Pushdown':'Extensión de tríceps en polea alta',
+ 'Pushdown tríceps':'Extensión de tríceps en polea alta',
+ 'Pushdown':'Extensión de tríceps en polea alta',
+ 'Abductor máquina':'Abducción de cadera en máquina',
+ 'Abductores':'Abducción de cadera en máquina',
+ 'Pullover polea':'Pullover en polea alta',
+ 'Curl femoral':'Curl femoral tumbado en máquina',
+ 'Extensión de piernas':'Extensión de cuádriceps en máquina',
+ 'Extensión de cuádriceps':'Extensión de cuádriceps en máquina',
+ 'Gemelos':'Elevación de talones en máquina',
+ 'Calf Machine':'Elevación de talones en máquina',
+ 'Gemelos de pie':'Elevación de talones de pie',
+ 'Elevación de gemelos':'Elevación de talones de pie',
+ 'Elevaciones de gemelos':'Elevación de talones de pie',
+ 'Calf Raise':'Elevación de talones de pie',
+ 'Calf Raises':'Elevación de talones de pie',
+ 'Gemelos unilateral':'Elevación de talones a una pierna',
+ 'Gemelos sentado':'Elevación de talones sentado en máquina',
+ 'Hip Thrust máquina':'Hip Thrust en máquina',
+ 'Gemelos en prensa':'Elevación de talones en prensa',
+ 'Elevación lateral':'Elevaciones laterales',
+ 'Elevaciones con mancuernas':'Elevaciones laterales con mancuernas',
+ 'Puente de glúteo':'Puente de glúteos'
+};
+const canonical=name=>aliases[name]||name;
+const rawSlug=name=>name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const slug=name=>rawSlug(canonical(name));
 const advanced=new Set(['Dominada lastrada','Handstand Push-Up','Pistol Squat','Nordic Curl','Ab Wheel','Hanging Leg Raise']);
 const beginner=new Set(['Sentadilla','Flexiones','Flexión inclinada','Puente de glúteos','Glute Bridge','Dead Bug','Bird Dog','Plancha','Gemelos de pie','Wall Sit']);
 const equipmentFor=name=>{
@@ -11,13 +58,14 @@ const equipmentFor=name=>{
  if(/mancuerna|goblet|farmer carry/i.test(name))return 'Mancuernas';
  if(/pallof/i.test(name))return 'Banda o polea';
  if(/polea|pushdown|face pull|pullover/i.test(name))return 'Polea';
- if(/smith|máquina|machine|chest press|shoulder press|hack squat|jalón|prensa|pec deck|high row|curl femoral|extensión de cuádriceps|extensión de piernas|abductor/i.test(name))return 'Máquina';
+ if(/smith|máquina|machine|chest press|shoulder press|hack squat|jalón|prensa|pec deck|high row|curl femoral|extensión de cuádriceps|extensión de piernas|abductor|abducción de cadera/i.test(name))return 'Máquina';
  if(/barra/i.test(name))return 'Barra';
  if(/^Remo$|^Remo sentado$|^Remo con agarre amplio$/.test(name))return 'Máquina o mancuerna';
  if(/hip thrust|press inclinado|curl de bíceps|elevaci[oó]n lateral|elevaciones laterales/i.test(name))return 'Peso corporal o equipo';
  return 'Peso corporal';
 };
 function register(name,muscle='Cuerpo completo'){
+ name=canonical(name);
  const id=slug(name);if(byId.has(id))return id;
  const equipment=equipmentFor(name),location=/Máquina|Polea|Barra/.test(equipment)?'Gimnasio':equipment==='Peso corporal'||equipment==='Mochila'?'Casa':'Ambos';
  const difficulty=advanced.has(name)?'Avanzado':beginner.has(name)?'Principiante':'Intermedio';
@@ -28,7 +76,7 @@ function register(name,muscle='Cuerpo completo'){
 const groups={
  'Pecho':'Flexión inclinada|Flexión normal|Flexión declinada|Flexión diamante|Chest Press|Pec Deck|Press con mancuernas|Press inclinado|Fondos',
  'Espalda':'Remo con mochila|Superman|Remo invertido|Dominada asistida|Jalón al pecho|Remo sentado|High Row|Pullover polea|Dominada|Dominada lastrada',
- 'Hombros':'Pike Push-Up|Shoulder Press|Press con mancuernas|Elevaciones laterales|Elevaciones laterales en polea|Reverse Pec Deck|Face Pull|Handstand Push-Up',
+ 'Hombros':'Pike Push-Up|Shoulder Press|Press de hombros con mancuernas|Elevaciones laterales|Elevaciones laterales en polea|Reverse Pec Deck|Face Pull|Handstand Push-Up',
  'Bíceps':'Curl con mochila|Curl máquina|Curl polea|Curl mancuerna|Preacher Curl|Hammer Curl|Dominada supina',
  'Tríceps':'Flexión cerrada|Pushdown|Extensión máquina|Extensión sobre cabeza',
  'Cuádriceps':'Sentadilla|Zancada|Split Squat|Bulgarian Split Squat|Prensa|Hack Squat|Extensión de piernas|Smith Squat|Pistol Squat',
@@ -84,7 +132,7 @@ const sports=[
  ['Fútbol','Piernas · estabilidad',[['Split Squat',8,'Cuádriceps'],['Puente glúteo unilateral',10,'Glúteos'],['Saltos verticales controlados',5,'Cuádriceps'],['Desplazamiento lateral',20,'Cuádriceps','time'],['Dead Bug',10,'Core'],['Aceleraciones cortas',3,'Cuerpo completo']]],
  ['Tenis','Desplazamiento · core',[['Lateral Shuffle',20,'Cuádriceps','time'],['Split Squat',8,'Cuádriceps'],['Pallof Press',10,'Core'],['Rotación con banda',10,'Core'],['Calf Raises',15,'Gemelos'],['Plancha lateral',25,'Core','time']]],
  ['Rugby','Fuerza · estabilidad',[['Goblet Squat',8,'Cuádriceps'],['Push-Up',10,'Pecho'],['Remo',10,'Espalda'],['Zancadas',8,'Cuádriceps'],['Farmer Carry',1,'Cuerpo completo','reps','20–30 m'],['Pallof Press',10,'Core']]],
- ['Básquet','Piernas · estabilidad',[['Squat',10,'Cuádriceps'],['Split Squat',8,'Cuádriceps'],['Saltos verticales',5,'Cuádriceps'],['Saltos laterales cortos',6,'Cuádriceps'],['Gemelos',15,'Gemelos'],['Plancha lateral',25,'Core','time']]],
+ ['Básquet','Piernas · estabilidad',[['Squat',10,'Cuádriceps'],['Split Squat',8,'Cuádriceps'],['Saltos verticales',5,'Cuádriceps'],['Saltos laterales cortos',6,'Cuádriceps'],['Elevación de talones de pie',15,'Gemelos'],['Plancha lateral',25,'Core','time']]],
  ['CrossFit','Fuerza · estabilidad',[['Goblet Squat',8,'Cuádriceps'],['Push-Ups',8,'Pecho'],['Remo mancuerna',10,'Espalda'],['Step-Ups',10,'Cuádriceps'],['Plancha',20,'Core','time']]],
  ['Hyrox','Carrera · fuerza',[['Carrera 400 m',1,'Cuerpo completo','reps','400 m'],['Goblet Squat',12,'Cuádriceps'],['Walking Lunges',10,'Cuádriceps'],['Push-Ups',10,'Pecho'],['Farmer Carry',1,'Cuerpo completo','reps','20–30 m']]],
  ['Hockey','Piernas · core',[['Split Squat',10,'Cuádriceps'],['Lateral Shuffle',20,'Cuádriceps','time'],['Wall Sit',30,'Cuádriceps','time'],['Single Leg Bridge',10,'Glúteos'],['Pallof Press',10,'Core'],['Plancha lateral',30,'Core','time']]],
@@ -94,11 +142,12 @@ const sports=[
  ['Natación','Espalda · estabilidad',[['Remo',12,'Espalda'],['Pullover con banda o polea',12,'Espalda'],['Face Pull',15,'Hombros'],['Dead Bug',10,'Core'],['Side Plank',30,'Core','time'],['Glute Bridge',15,'Glúteos']]],
  ['Handball','Piernas · hombros',[['Split Squat',8,'Cuádriceps'],['Lateral Shuffle',20,'Cuádriceps','time'],['Saltos verticales',5,'Cuádriceps'],['Remo',12,'Espalda'],['Face Pull',15,'Hombros'],['Pallof Press',10,'Core']]],
  ['Atletismo / Sprint','Piernas · estabilidad',[['Split Squat',8,'Cuádriceps'],['Single Leg Bridge',10,'Glúteos'],['Calf Raise',15,'Gemelos'],['A-March',20,'Cuerpo completo','time'],['Pogos suaves',10,'Gemelos'],['Dead Bug',8,'Core']]],
- ['Ciclismo','Piernas · core',[['Split Squat',10,'Cuádriceps'],['Step-Up',10,'Cuádriceps'],['Hip Thrust',15,'Glúteos'],['Gemelos',15,'Gemelos'],['Dead Bug',10,'Core'],['Side Plank',30,'Core','time']]]
+ ['Ciclismo','Piernas · core',[['Split Squat',10,'Cuádriceps'],['Step-Up',10,'Cuádriceps'],['Hip Thrust',15,'Glúteos'],['Elevación de talones de pie',15,'Gemelos'],['Dead Bug',10,'Core'],['Side Plank',30,'Core','time']]]
 ];
 const sportsRoutines=sports.map(([sport,description,items])=>({id:'sport-'+slug(sport),name:'Rápida · '+sport,category:'Deportes',description,level:'Intermedio',duration:'15–25 min',equipment:'Peso corporal · equipo opcional',days:[day('Circuito',items.map(([name,amount,muscle,mode='reps',range])=>step(name,sport==='CrossFit'?4:3,amount,muscle,mode,30,range||String(amount))))]}));
 for(const routine of [...presetRoutines,...sportsRoutines])for(const d of routine.days)for(const x of d.exercises)for(const alt of x.alternates){const main=byId.get(x.id)?.primaryMuscle||'Cuerpo completo';const altId=register(alt,main);const item=byId.get(x.id);if(!item.alternatives.includes(altId))item.alternatives.push(altId)}
-const getExercise=id=>byId.get(id);
+const legacyIds=new Map(Object.entries(aliases).map(([oldName,newName])=>[rawSlug(oldName),slug(newName)]));
+const getExercise=id=>byId.get(id)||byId.get(legacyIds.get(id));
 root.RTCatalog={exerciseLibrary,presetRoutines,sportsRoutines,allRoutines:[...presetRoutines,...sportsRoutines],getExercise,slug};
 if(typeof module!=='undefined')module.exports=root.RTCatalog;
 })(typeof window==='undefined'?globalThis:window);
