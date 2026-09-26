@@ -58,6 +58,9 @@ const shapes={
  wallsit:'<path class="equipment" d="M37 23v63"/><circle cx="52" cy="29" r="7"/><path d="M47 35 47 63 75 63 78 85 M47 63 36 84 M47 43 66 53"/><path class="motion" d="M95 49v16"/>'
 };
 function svg(name,equipment='',className=''){
+ const id=root.RTCatalog?.slug(name)||clean(name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ const drawings=root.RTExerciseDrawings,pair=drawings?.map[id];
+ if(pair){const label=escape(name),frame=(key,phase)=>`<img src="data:image/svg+xml;base64,${drawings.images[key]}" width="240" height="240" alt="${phase}: ${label}" loading="lazy" decoding="async">`;return `<span class="rt-exercise-art rt-art-pair ${escape(className)}" role="group" aria-label="Movimiento de ${label}">${frame(pair[0],'Inicio')}${frame(pair[1],'Final')}</span>`}
  const kind=pose(name),gear=clean(equipment),base=shapes[kind];
  const floor='<path class="ground" d="M12 90h96"/>';
  const frame=/maquina|polea|smith|barra/.test(gear)&&!['pullup','wallsit'].includes(kind)?'<path class="equipment frame" d="M13 84V13h12 M108 84V13H96"/>':'';

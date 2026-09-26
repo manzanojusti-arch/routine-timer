@@ -96,3 +96,16 @@
 .rt-art-current{display:grid;place-items:center;min-height:80px}
 .rt-art-current>.rt-exercise-art{width:102px;height:80px}
 #customOrderList .rt-exercise-art{float:right;width:52px;height:44px;margin-top:-29px}
+.rt-art-pair{display:flex;align-items:center;gap:4px;width:112px;height:55px}
+.rt-art-pair img{display:block;width:calc(50% - 2px);height:auto;aspect-ratio:1;object-fit:contain;border-radius:5px;background:#f7fafb}
+.rt-art-pair.rt-art-small{width:56px;height:52px}
+.rt-art-pair.rt-art-small img:first-child{width:52px}
+.rt-art-pair.rt-art-small img:last-child,.rt-exercise-card>.rt-art-pair img:last-child{display:none}
+.rt-exercise-card>.rt-art-pair{width:68px;height:68px}
+.rt-exercise-card>.rt-art-pair img:first-child{width:66px}
+.rt-art-detail .rt-art-pair{width:min(100%,300px);height:145px;justify-content:center}
+.rt-art-detail .rt-art-pair img{width:calc(50% - 2px);max-width:145px}
+.rt-art-current>.rt-art-pair{width:min(100%,220px);height:105px;justify-content:center}
+.rt-art-current>.rt-art-pair img{width:calc(50% - 2px);max-width:105px}
+#list .exercise>.rt-art-pair{width:56px;height:52px}
+#customOrderList .rt-art-pair{display:flex;width:52px;height:44px}
